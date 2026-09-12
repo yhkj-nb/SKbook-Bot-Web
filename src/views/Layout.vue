@@ -15,13 +15,12 @@ const NAV_ITEMS = [
   { label: '机器人管理', key: '/bots', icon: 'bot' },
   { label: '插件管理', key: '/plugins', icon: 'plugins' },
   { label: '消息记录', key: '/messages', icon: 'messages' },
-]
-
-const BOTTOM_ITEMS = [
   { label: '日志查看', key: '/logs', icon: 'file' },
   { label: '框架更新', key: '/update', icon: 'update' },
   { label: '系统设置', key: '/settings', icon: 'settings' },
 ]
+
+const BOTTOM_ITEMS = []
 
 const currentRoute = computed(() => route.path)
 
@@ -75,17 +74,6 @@ function isActive(key) {
         </nav>
 
         <div class="sidebar-bottom">
-          <div
-            v-for="item in BOTTOM_ITEMS"
-            :key="item.key"
-            class="nav-item"
-            :class="{ active: isActive(item.key) }"
-            @click="navigate(item.key)"
-          >
-            <div v-if="isActive(item.key)" class="nav-indicator"></div>
-            <SvgIcon :name="item.icon" :size="20" />
-            <span>{{ item.label }}</span>
-          </div>
           <div class="nav-item" @click="handleLogout">
             <SvgIcon name="power" :size="20" />
             <span>退出登录</span>
