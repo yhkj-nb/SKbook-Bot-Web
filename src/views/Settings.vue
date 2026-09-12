@@ -252,7 +252,6 @@ onMounted(async () => {
     const res = await api.getConfig()
     if (res.success) {
       const d = res.data
-      // 前端脱敏字段还原为可编辑状态
       localConfig.value = {
         server: {
           host: d.server?.host || '0.0.0.0',
@@ -345,7 +344,6 @@ async function handleSave() {
   try {
     const c = localConfig.value
 
-    // 构建扁平键值对
     const payload = {
       'server.host': c.server.host,
       'server.port': c.server.port,
@@ -364,17 +362,14 @@ async function handleSave() {
       'services.message_cleanup_days': c.services.message_cleanup_days,
     }
 
-    // web_secret_key: 如果用户填了新值才提交
     if (c.server.web_secret_key) {
       payload['server.web_secret_key'] = c.server.web_secret_key
     }
 
-    // oauth2.client_secret: 如果用户填了新值才提交
     if (c.oauth2.client_secret) {
       payload['oauth2.client_secret'] = c.oauth2.client_secret
     }
 
-    // bots: 脱敏 token 保留原样，新 token 直接提交
     payload['bots'] = c.bots.map(b => ({
       name: b.name,
       token: b.token,
@@ -388,7 +383,6 @@ async function handleSave() {
     if (res.success) {
       saveMsg.value = res.message || '全部设置已保存'
       saveSuccess.value = true
-      // 刷新配置状态（重新获取最新配置）
       const refreshRes = await api.getConfig()
       if (refreshRes.success) {
         const d = refreshRes.data
@@ -462,7 +456,6 @@ async function handleSave() {
   background: #FEE2E2;
 }
 
-/* 机器人配置卡片 */
 .bot-config-card {
   background: #F8FAFC;
   border: 1px solid #E2E8F0;
