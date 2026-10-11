@@ -206,7 +206,7 @@
             基于 SkBook 开放平台 API 的多机器人管理框架，支持插件热加载、Web 管理面板。
           </p>
           <p style="margin-top: 8px; font-size: 12px; color: #94A3B8;">
-            API 文档：<a href="https://skbook.sk26.cn" target="_blank">https://skbook.sk26.cn</a>
+            API 文档：<a href="https://skbookv1.sk68.top/open/docs.php" target="_blank">https://skbookv1.sk68.top/open/docs.php</a>
           </p>
         </div>
       </div>
